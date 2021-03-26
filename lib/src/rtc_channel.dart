@@ -238,7 +238,6 @@ class RtcChannel with RtcChannelInterface {
   }
 
   @override
-  @deprecated
   Future<void> setLiveTranscoding(LiveTranscoding transcoding) {
     return _invokeMethod(
         'setLiveTranscoding', {'transcoding': transcoding.toJson()});
