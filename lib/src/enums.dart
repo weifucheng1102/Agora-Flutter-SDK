@@ -857,8 +857,6 @@ enum EncryptionMode {
   AES256XTS,
 
   /// 128-bit SM4 encryption, ECB mode.
-  ///
-  ///
   @JsonValue(4)
   SM4128ECB,
 }
@@ -968,8 +966,6 @@ enum ErrorCode {
   InvalidChannelId,
 
   /// 103: Fails to get server resources in the specified region. Please try to specify another region.
-  ///
-  ///
   @JsonValue(103)
   NoServerResources,
 
@@ -1872,8 +1868,6 @@ enum WarningCode {
   AdmInterruption,
 
   /// During a call, `AudioSessionCategory` should be set to `AVAudioSessionCategoryPlayAndRecord`, and the SDK monitors this value. If the `AudioSessionCategory` is set to other values, this warning code is triggered and the SDK will forcefully set it back to `AVAudioSessionCategoryPlayAndRecord`.
-  ///
-  ///
   @JsonValue(1029)
   AdmCategoryNotPlayAndRecord,
 
@@ -1893,14 +1887,10 @@ enum WarningCode {
   /// - Restart your audio device.
   /// - Restart your device where the app runs.
   /// - Upgrade the sound card drive.
-  ///
-  ///
   @JsonValue(1040)
   AdmNoDataReadyCallback,
 
   /// Audio device module: The audio recording device is different from the audio playback device, which may cause echoes problem. Agora recommends using the same audio device to record and playback audio.
-  ///
-  ///
   @JsonValue(1042)
   AdmInconsistentDevices,
 
@@ -2001,8 +1991,6 @@ enum StreamPublishState {
 }
 
 /// The subscribing state.
-///
-///
 enum StreamSubscribeState {
   /// The initial subscribing state after joining the channel.
   @JsonValue(0)
@@ -2064,9 +2052,11 @@ enum AudioEffectPreset {
   /// Turn off audio effects and use the original voice.
   @JsonValue(0x00000000)
   AudioEffectOff,
+
   /// An audio effect typical of a KTV venue.
   @JsonValue(0x02010100)
   RoomAcousticsKTV,
+
   /// An audio effect typical of a concert hall.
   ///
   /// **Note**
@@ -2074,6 +2064,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02010200)
   RoomAcousticsVocalConcert,
+
   /// An audio effect typical of a recording studio.
   ///
   /// **Note**
@@ -2081,6 +2072,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02010300)
   RoomAcousticsStudio,
+
   /// An audio effect typical of a vintage phonograph.
   ///
   /// **Note**
@@ -2088,6 +2080,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02010400)
   RoomAcousticsPhonograph,
+
   /// A virtual stereo effect that renders monophonic audio as stereo audio.
   ///
   /// **Note**
@@ -2095,6 +2088,7 @@ enum AudioEffectPreset {
   /// Call `setAudioProfile` and set the profile parameter to `MusicStandardStereo(3)` or `MusicHighQualityStereo(5)` before setting this enumerator; otherwise, the enumerator setting does not take effect.
   @JsonValue(0x02010500)
   RoomAcousticsVirtualStereo,
+
   /// A more spatial audio effect.
   ///
   /// **Note**
@@ -2102,6 +2096,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02010600)
   RoomAcousticsSpacial,
+
   /// A more ethereal audio effect.
   ///
   /// **Note**
@@ -2109,6 +2104,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02010700)
   RoomAcousticsEthereal,
+
   /// A 3D voice effect that makes the voice appear to be moving around the user. The default cycle period of the 3D voice effect is 10 seconds. To change the cycle period, call [RtcEngine.setAudioEffectParameters] after this method.
   ///
   /// **Note**
@@ -2117,6 +2113,7 @@ enum AudioEffectPreset {
   /// - If the 3D voice effect is enabled, users need to use stereo audio playback devices to hear the anticipated voice effect.
   @JsonValue(0x02010800)
   RoomAcoustics3DVoice,
+
   /// The voice of a middle-aged man.
   ///
   /// **Note**
@@ -2125,6 +2122,7 @@ enum AudioEffectPreset {
   /// - To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020100)
   VoiceChangerEffectUncle,
+
   /// The voice of an old man.
   ///
   /// **Note**
@@ -2133,6 +2131,7 @@ enum AudioEffectPreset {
   /// - To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020200)
   VoiceChangerEffectOldMan,
+
   /// The voice of a boy.
   ///
   /// **Note**
@@ -2141,6 +2140,7 @@ enum AudioEffectPreset {
   /// - To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020300)
   VoiceChangerEffectBoy,
+
   /// The voice of a young woman.
   ///
   /// **Note**
@@ -2149,6 +2149,7 @@ enum AudioEffectPreset {
   /// - To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020400)
   VoiceChangerEffectSister,
+
   /// The voice of a girl.
   ///
   /// **Note**
@@ -2157,6 +2158,7 @@ enum AudioEffectPreset {
   /// - To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020500)
   VoiceChangerEffectGirl,
+
   /// The voice of Pig King, a character in Journey to the West who has a voice like a growling bear.
   ///
   /// **Note**
@@ -2164,6 +2166,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020600)
   VoiceChangerEffectPigKing,
+
   /// The voice of Hulk.
   ///
   /// **Note**
@@ -2171,6 +2174,7 @@ enum AudioEffectPreset {
   /// To achieve better audio effect quality, Agora recommends calling [RtcEngine.setAudioProfile] and setting the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator.
   @JsonValue(0x02020700)
   VoiceChangerEffectHulk,
+
   /// An audio effect typical of R&B music.
   ///
   /// **Note**
@@ -2178,6 +2182,7 @@ enum AudioEffectPreset {
   /// Call [RtcEngine.setAudioProfile] and set the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator; otherwise, the enumerator setting does not take effect.
   @JsonValue(0x02030100)
   StyleTransformationRnB,
+
   /// An audio effect typical of popular music.
   ///
   /// **Note**
@@ -2185,6 +2190,7 @@ enum AudioEffectPreset {
   /// Call [RtcEngine.setAudioProfile] and set the profile parameter to `MusicHighQuality(4)` or `MusicHighQualityStereo(5)` before setting this enumerator; otherwise, the enumerator setting does not take effect.
   @JsonValue(0x02030200)
   StyleTransformationPopular,
+
   /// A pitch correction effect that corrects the user’s pitch based on the pitch of the natural C major scale. To change the basic mode and tonic pitch, call [RtcEngine.setAudioEffectParameters] after this method.
   ///
   /// **Note**
@@ -2199,6 +2205,7 @@ enum VoiceBeautifierPreset {
   /// Turn off voice beautifier effects and use the original voice.
   @JsonValue(0x00000000)
   VoiceBeautifierOff,
+
   /// A more magnetic voice.
   ///
   /// **Note**
@@ -2206,37 +2213,47 @@ enum VoiceBeautifierPreset {
   /// Agora recommends using this enumerator to process a male-sounding voice; otherwise, you may experience vocal distortion.
   @JsonValue(0x01010100)
   ChatBeautifierMagnetic,
+
   /// A fresher voice.
   ///
   /// Agora recommends using this enumerator to process a female-sounding voice; otherwise, you may experience vocal distortion.
   @JsonValue(0x01010200)
   ChatBeautifierFresh,
+
   /// A more vital voice.
   ///
   /// Agora recommends using this enumerator to process a female-sounding voice; otherwise, you may experience vocal distortion.
   @JsonValue(0x01010300)
   ChatBeautifierVitality,
+
   /// A more vigorous voice.
   @JsonValue(0x01030100)
   TimbreTransformationVigorous,
+
   /// A deeper voice.
   @JsonValue(0x01030200)
   TimbreTransformationDeep,
+
   /// A mellower voice.
   @JsonValue(0x01030300)
   TimbreTransformationMellow,
+
   /// A falsetto voice.
   @JsonValue(0x01030400)
   TimbreTransformationFalsetto,
+
   /// A fuller voice.
   @JsonValue(0x01030500)
   TimbreTransformationFull,
+
   /// A clearer voice.
   @JsonValue(0x01030600)
   TimbreTransformationClear,
+
   /// A more resounding voice.
   @JsonValue(0x01030700)
   TimbreTransformationResounding,
+
   /// A more ringing voice.
   @JsonValue(0x01030800)
   TimbreTransformationRinging,

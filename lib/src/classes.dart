@@ -30,10 +30,10 @@ class UserInfo {
 @JsonSerializable(explicitToJson: true)
 class VideoDimensions {
   /// The video resolution on the horizontal axis.
-  final int width;
+  int width;
 
   /// The video resolution on the vertical axis.
-  final int height;
+  int height;
 
   /// Constructs a [VideoDimensions]
   VideoDimensions(this.width, this.height);
@@ -205,19 +205,19 @@ class BeautyOptions {
 @JsonSerializable(explicitToJson: true)
 class AgoraImage {
   /// HTTP/HTTPS URL address of the image on the broadcasting video. The maximum length of this parameter is 1024 bytes.
-  final String url;
+  String url;
 
   /// Position of the image on the upper left of the broadcasting video on the horizontal axis.
-  final int x;
+  int x;
 
   /// Position of the image on the upper left of the broadcasting video on the vertical axis.
-  final int y;
+  int y;
 
   /// Width of the image on the broadcasting video.
-  final int width;
+  int width;
 
   /// Height of the image on the broadcasting video.
-  final int height;
+  int height;
 
   /// Constructs a [AgoraImage]
   AgoraImage(this.url, this.x, this.y, this.width, this.height);
@@ -234,18 +234,20 @@ class AgoraImage {
 @JsonSerializable(explicitToJson: true)
 class TranscodingUser {
   /// ID of the user in the CDN live streaming.
-  final int uid;
+  int uid;
 
   /// Horizontal position of the video frame of the user from the top left corner of the CDN live streaming.
-  final int x;
+  int x;
 
   /// Vertical position of the video frame of the user from the top left corner of the CDN live streaming.
-  final int y;
+  int y;
 
   /// Width of the video frame of the user on the CDN live streaming. The default value is 360.
+  @JsonKey(includeIfNull: false)
   int width;
 
   /// Height of the video frame of the user on the CDN live streaming. The default value is 640.
+  @JsonKey(includeIfNull: false)
   int height;
 
   /// The layer index of the video frame. An integer. The value range is [0,100].
@@ -253,6 +255,7 @@ class TranscodingUser {
   /// - 100: Top layer.
   ///
   /// **Note**: If the value is set lower than 0 or higher than 100, the [ErrorCode.InvalidArgument] error is reported.
+  @JsonKey(includeIfNull: false)
   int zOrder;
 
   /// The transparency of the video frame of the user in the CDN live stream that ranges between 0.0 and 1.0. 0.0 means that the video frame is completely transparent and 1.0 means opaque. The default value is 1.0.
@@ -263,6 +266,7 @@ class TranscodingUser {
   /// See [AudioChannel].
   ///
   /// **Note** Special players are needed if `audioChannel` is not set as 0.
+  @JsonKey(includeIfNull: false)
   AudioChannel audioChannel;
 
   /// Constructs a [TranscodingUser]
@@ -360,7 +364,7 @@ class LiveTranscoding {
   String userConfigExtraInfo;
 
   /// An TranscodingUser object managing the user layout configuration in the CDN live stream. Agora supports a maximum of 17 transcoding users in a CDN live stream channel.
-  final List<TranscodingUser> transcodingUsers;
+  List<TranscodingUser> transcodingUsers;
 
   /// Constructs a [LiveTranscoding]
   LiveTranscoding(
@@ -414,7 +418,7 @@ class ChannelMediaInfo {
   String token;
 
   /// The user ID.
-  final int uid;
+  int uid;
 
   /// Constructs a [ChannelMediaInfo]
   ChannelMediaInfo(this.uid, {this.channelName, this.token});
@@ -436,7 +440,7 @@ class ChannelMediaRelayConfiguration {
   /// - `token`: The token for joining the source channel. It is generated with the `channelName` and `uid` you set in `srcInfo`.
   ///   - If you have not enabled the App Certificate, set this parameter as the default value NULL, which means the SDK applies the App ID.
   ///   - If you have enabled the App Certificate, you must use the token generated with the `channelName` and `uid`.
-  final ChannelMediaInfo srcInfo;
+  ChannelMediaInfo srcInfo;
 
   /// The information of the destination channel: [ChannelMediaInfo]. It contains the following members:
   ///- `channelName`: The name of the destination channel.
@@ -445,7 +449,7 @@ class ChannelMediaRelayConfiguration {
   ///  - `token`: The token for joining the destination channel. It is generated with the `channelName` and `uid` you set in `destInfo`.
   ///    - If you have not enabled the App Certificate, set this parameter as the default value NULL, which means the SDK applies the App ID.
   ///    - If you have enabled the App Certificate, you must use the token generated with the `channelName` and `uid`.
-  final List<ChannelMediaInfo> destInfos;
+  List<ChannelMediaInfo> destInfos;
 
   /// Constructs a [ChannelMediaRelayConfiguration]
   ChannelMediaRelayConfiguration(this.srcInfo, this.destInfos);
@@ -462,16 +466,16 @@ class ChannelMediaRelayConfiguration {
 @JsonSerializable(explicitToJson: true)
 class LastmileProbeConfig {
   /// Whether to probe uplink of lastmile. i.e., audience don't need probe uplink bandwidth.
-  final bool probeUplink;
+  bool probeUplink;
 
   /// Whether to probe downlink of lastmile.
-  final bool probeDownlink;
+  bool probeDownlink;
 
   /// The expected maximum sending bitrate in bps in range of [100000, 5000000]. It is recommended to set this value according to the required bitrate of selected video profile.
-  final int expectedUplinkBitrate;
+  int expectedUplinkBitrate;
 
   /// The expected maximum receive bitrate in bps in range of [100000, 5000000].
-  final int expectedDownlinkBitrate;
+  int expectedDownlinkBitrate;
 
   /// Constructs a [LastmileProbeConfig]
   LastmileProbeConfig(this.probeUplink, this.probeDownlink,
@@ -489,16 +493,16 @@ class LastmileProbeConfig {
 @JsonSerializable(explicitToJson: true)
 class Rectangle {
   /// The horizontal offset from the top-left corner.
-  final int x;
+  int x;
 
   /// The vertical offset from the top-left corner.
-  final int y;
+  int y;
 
   /// The width (pixels) of the watermark image.
-  final int width;
+  int width;
 
   /// The height (pixels) of the watermark image.
-  final int height;
+  int height;
 
   /// Constructs a [Rectangle]
   Rectangle(this.x, this.y, this.width, this.height);
@@ -522,11 +526,11 @@ class WatermarkOptions {
 
   /// The watermark position in the landscape mode.
   /// See [Rectangle].
-  final Rectangle positionInLandscapeMode;
+  Rectangle positionInLandscapeMode;
 
   /// The watermark position in the portrait mode.
   /// See [Rectangle].
-  final Rectangle positionInPortraitMode;
+  Rectangle positionInPortraitMode;
 
   /// Constructs a [WatermarkOptions]
   WatermarkOptions(this.positionInLandscapeMode, this.positionInPortraitMode,
@@ -544,9 +548,11 @@ class WatermarkOptions {
 @JsonSerializable(explicitToJson: true)
 class LiveInjectStreamConfig {
   /// Width of the added stream to the broadcast. The default value is 0, which is the same width as the original stream.
+  @JsonKey(includeIfNull: false)
   int width;
 
   /// Height of the added stream to the broadcast. The default value is 0, which is the same height as the original stream.
+  @JsonKey(includeIfNull: false)
   int height;
 
   /// Video GOP of the added stream to the broadcast. The default value is 30 frames.
@@ -603,11 +609,11 @@ class LiveInjectStreamConfig {
 class CameraCapturerConfiguration {
   /// The camera capturer configuration.
   /// See [CameraCaptureOutputPreference].
-  final CameraCaptureOutputPreference preference;
+  CameraCaptureOutputPreference preference;
 
   /// The camera direction.
   /// See [CameraDirection].
-  final CameraDirection cameraDirection;
+  CameraDirection cameraDirection;
 
   /// Constructs a [CameraCapturerConfiguration]
   CameraCapturerConfiguration(this.preference, this.cameraDirection);
@@ -629,7 +635,7 @@ class ChannelMediaOptions {
   ///
   /// This member serves a similar function to the [RtcEngine.muteAllRemoteAudioStreams] method.
   /// After joining the channel, you can call `muteAllRemoteAudioStreams` to set whether to subscribe to audio streams in the channel.
-  final bool autoSubscribeAudio;
+  bool autoSubscribeAudio;
 
   /// Determines whether to subscribe to video streams when the user joins the channel.
   /// - `true`: (Default) Subscribe.
@@ -637,7 +643,7 @@ class ChannelMediaOptions {
   ///
   /// This member serves a similar function to the [RtcEngine.muteAllRemoteVideoStreams] method.
   /// After joining the channel, you can call `muteAllRemoteVideoStreams` to set whether to subscribe to video streams in the channel.
-  final bool autoSubscribeVideo;
+  bool autoSubscribeVideo;
 
   /// Constructs a [ChannelMediaOptions]
   ChannelMediaOptions(this.autoSubscribeAudio, this.autoSubscribeVideo);
@@ -651,19 +657,17 @@ class ChannelMediaOptions {
 }
 
 /// Definition of `EncryptionConfig`.
-///
-///
 @JsonSerializable(explicitToJson: true)
 class EncryptionConfig {
   /// Encryption mode. The default encryption mode is `AES128XTS`. See [EncryptionMode].
-  final EncryptionMode encryptionMode;
+  EncryptionMode encryptionMode;
 
   /// Encryption key in string type.
   ///
   /// **Note**
   ///
   /// If you do not set an encryption key or set it as null, you cannot use the built-in encryption, and the SDK returns [ErrorCode.InvalidArgument].
-  final String encryptionKey;
+  String encryptionKey;
 
   /// Constructs a [EncryptionConfig]
   EncryptionConfig(this.encryptionMode, this.encryptionKey);
@@ -783,7 +787,6 @@ class AudioVolumeInfo {
   /// - 0: The local user is not speaking.
   /// - 1: The local user is speaking.
   ///
-  ///
   /// **Note**
   /// - The `vad` parameter cannot report the voice activity status of the remote users. In the remote users' callback, `vad` = 0.
   /// - Ensure that you set `report_vad`(true) in the [RtcEngine.enableAudioVolumeIndication] method to enable the voice activity
@@ -894,8 +897,6 @@ class LocalAudioStats {
   int sentBitrate;
 
   /// The video packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.
-  ///
-  ///
   int txPacketLossRate;
 
   /// Constructs a [LocalAudioStats]
@@ -951,13 +952,9 @@ class LocalVideoStats {
   VideoCodecType codecType;
 
   /// The video packet loss rate (%) from the local client to the Agora edge server before applying the anti-packet loss strategies.
-  ///
-  ///
   int txPacketLossRate;
 
   /// The capture frame rate (fps) of the local video.
-  ///
-  ///
   int captureFrameRate;
 
   /// Constructs a [LocalVideoStats]
@@ -1013,8 +1010,6 @@ class RemoteAudioStats {
   int totalActiveTime;
 
   /// The total active time (ms) of the remote audio stream after the remote user publish the audio stream.
-  ///
-  ///
   int publishDuration;
 
   /// Constructs a [RemoteAudioStats]
@@ -1071,8 +1066,6 @@ class RemoteVideoStats {
   int totalActiveTime;
 
   /// The total publish duration (ms) of the remote video stream.
-  ///
-  ///
   int publishDuration;
 
   /// Constructs a [RemoteVideoStats]
@@ -1122,7 +1115,7 @@ class ClientRoleOptions {
   AudienceLatencyLevelType audienceLatencyLevel;
 
   /// Constructs a [ClientRoleOptions]
-  ClientRoleOptions();
+  ClientRoleOptions(this.audienceLatencyLevel);
 
   /// @nodoc
   factory ClientRoleOptions.fromJson(Map<String, dynamic> json) =>

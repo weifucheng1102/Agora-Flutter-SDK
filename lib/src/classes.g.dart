@@ -205,9 +205,6 @@ Map<String, dynamic> _$TranscodingUserToJson(TranscodingUser instance) {
     'uid': instance.uid,
     'x': instance.x,
     'y': instance.y,
-    'width': instance.width,
-    'height': instance.height,
-    'zOrder': instance.zOrder,
   };
 
   void writeNotNull(String key, dynamic value) {
@@ -216,8 +213,11 @@ Map<String, dynamic> _$TranscodingUserToJson(TranscodingUser instance) {
     }
   }
 
+  writeNotNull('width', instance.width);
+  writeNotNull('height', instance.height);
+  writeNotNull('zOrder', instance.zOrder);
   writeNotNull('alpha', instance.alpha);
-  val['audioChannel'] = _$AudioChannelEnumMap[instance.audioChannel];
+  writeNotNull('audioChannel', _$AudioChannelEnumMap[instance.audioChannel]);
   return val;
 }
 
@@ -442,10 +442,7 @@ LiveInjectStreamConfig _$LiveInjectStreamConfigFromJson(
 
 Map<String, dynamic> _$LiveInjectStreamConfigToJson(
     LiveInjectStreamConfig instance) {
-  final val = <String, dynamic>{
-    'width': instance.width,
-    'height': instance.height,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -453,6 +450,8 @@ Map<String, dynamic> _$LiveInjectStreamConfigToJson(
     }
   }
 
+  writeNotNull('width', instance.width);
+  writeNotNull('height', instance.height);
   writeNotNull('videoGop', instance.videoGop);
   writeNotNull(
       'videoFramerate', _$VideoFrameRateEnumMap[instance.videoFramerate]);
@@ -828,9 +827,10 @@ Map<String, dynamic> _$FacePositionInfoToJson(FacePositionInfo instance) =>
     };
 
 ClientRoleOptions _$ClientRoleOptionsFromJson(Map<String, dynamic> json) {
-  return ClientRoleOptions()
-    ..audienceLatencyLevel = _$enumDecodeNullable(
-        _$AudienceLatencyLevelTypeEnumMap, json['audienceLatencyLevel']);
+  return ClientRoleOptions(
+    _$enumDecodeNullable(
+        _$AudienceLatencyLevelTypeEnumMap, json['audienceLatencyLevel']),
+  );
 }
 
 Map<String, dynamic> _$ClientRoleOptionsToJson(ClientRoleOptions instance) =>

@@ -240,7 +240,6 @@ class RtcChannel with RtcChannelInterface {
   }
 
   @override
-  @deprecated
   Future<void> setLiveTranscoding(LiveTranscoding transcoding) {
     return _invokeMethod(
         'setLiveTranscoding', {'transcoding': transcoding.toJson()});
@@ -353,7 +352,6 @@ mixin RtcChannelInterface
   ///   - Contains the `options` parameter, which decides whether to subscribe to all streams before joining the channel.
   ///   - Users can join multiple channels simultaneously by creating multiple `RtcChannel` instances and calling the `joinChannel` method of each instance.
   ///   - By default, the SDK does not publish any stream after the user joins the channel. You need to call the publish method to do that.
-  ///
   ///
   /// - [RtcEngine.joinChannel]
   ///   - Contains the `channelName` parameter, which specifies the channel to join.
