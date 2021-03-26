@@ -228,6 +228,7 @@ class RtcChannel with RtcChannelInterface {
   }
 
   @override
+  @deprecated
   Future<void> setEncryptionMode(EncryptionMode encryptionMode) {
     return _invokeMethod('setEncryptionMode',
         {'encryptionMode': EncryptionModeConverter(encryptionMode).value()});
@@ -720,8 +721,6 @@ mixin RtcEncryptionInterface {
   Future<void> setEncryptionMode(EncryptionMode encryptionMode);
 
   /// Enables/Disables the built-in encryption.
-  ///
-  ///
   ///
   /// In scenarios requiring high security, Agora recommends calling `enableEncryption` to enable the built-in encryption before joining a channel.
   ///
