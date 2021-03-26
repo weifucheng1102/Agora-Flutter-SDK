@@ -31,7 +31,8 @@ class RtcEngine with RtcEngineInterface {
     });
   }
 
-  Future<T> _invokeMethod<T>(String method, [Map<String, dynamic> arguments]) {
+  static Future<T> _invokeMethod<T>(String method,
+      [Map<String, dynamic> arguments]) {
     return _methodChannel.invokeMethod(method, arguments);
   }
 
@@ -50,7 +51,7 @@ class RtcEngine with RtcEngineInterface {
   /// - An [RtcEngine] instance if the method call succeeds.
   /// - The error code, if this method call fails:
   ///   - [ErrorCode.InvalidAppId]
-  static Future<RtcEngine> create(String appId) async {
+  static Future<RtcEngine> create(String appId) {
     return createWithAreaCode(appId, AreaCode.GLOB);
   }
 
@@ -81,8 +82,10 @@ class RtcEngine with RtcEngineInterface {
       String appId, AreaCode areaCode) async {
     if (_engine != null) return _engine;
     await _methodChannel.invokeMethod('create', {
-      'appId': appId,
-      'areaCode': AreaCodeConverter(areaCode).value(),
+      'config': {
+        'appId': appId,
+        'areaCode': AreaCodeConverter(areaCode).value(),
+      },
       'appType': 4
     });
     _engine = RtcEngine._();
