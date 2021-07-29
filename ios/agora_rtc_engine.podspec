@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
   s.dependency 'AgoraRtcEngine_iOS', '3.4.6'
+  s.dependency 'AgoraRtm_iOS'
   s.platform = :ios, '8.0'
 
   # Flutter.framework does not contain a i386 slice. Only x86_64 simulators are supported.
