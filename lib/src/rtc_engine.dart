@@ -195,6 +195,43 @@ class RtcEngine with RtcEngineInterface {
     });
   }
 
+  ///  登录 聊天系统
+  @override
+  Future<void> loginChat(String? token, String? uid) {
+    return _invokeMethod('loginChat', {
+      'token': token,
+      'uid': uid,
+    });
+  }
+
+  /// 加入聊天频道
+  @override
+  Future<void> joinChat(String? channelID) {
+    return _invokeMethod('joinChat', {
+      'channelID': channelID,
+    });
+  }
+
+  /// 发送消息
+  @override
+  Future<void> sendMsg(String? text) {
+    return _invokeMethod('sendMsg', {
+      'text': text,
+    });
+  }
+
+  ///离开频道
+  @override
+  Future<void> leaveChat(leaveChat) {
+    return _invokeMethod('leaveChat');
+  }
+
+  ///离开频道
+  @override
+  Future<void> logoutChat(leaveChat) {
+    return _invokeMethod('logoutChat');
+  }
+
   @override
   Future<void> setClientRole(ClientRole role, [ClientRoleOptions? options]) {
     return _invokeMethod('setClientRole', {

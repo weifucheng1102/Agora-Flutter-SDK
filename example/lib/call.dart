@@ -26,6 +26,8 @@ class _CallPageState extends State<CallPage> {
   bool muted = false;
   late RtcEngine _engine;
 
+  int messageIndex = 1;
+
   @override
   void dispose() {
     // clear users
@@ -39,6 +41,7 @@ class _CallPageState extends State<CallPage> {
   @override
   void initState() {
     super.initState();
+
     // initialize agora sdk
     initialize();
   }
@@ -60,7 +63,13 @@ class _CallPageState extends State<CallPage> {
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
     configuration.dimensions = VideoDimensions(width: 1920, height: 1080);
     await _engine.setVideoEncoderConfiguration(configuration);
-    await _engine.joinChannel(RTC_Token, widget.channelName!, null, 0);
+    await _engine.joinChannel(Token, widget.channelName!, null, Uid);
+
+    //登录聊天
+    await _engine.loginChat(Token, Uid.toString());
+    //加入聊天
+    await _engine.joinChat(widget.channelName);
+    //
   }
 
   /// Create agora sdk instance and initialize
@@ -292,6 +301,18 @@ class _CallPageState extends State<CallPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Agora Flutter QuickStart'),
+        actions: [
+          GestureDetector(
+            onTap: () async {
+              await _engine.sendMsg('发送了第$messageIndex条消息');
+              print('发送了第$messageIndex条消息');
+              messageIndex++;
+            },
+            child: Text(
+              '发送消息',
+            ),
+          ),
+        ],
       ),
       backgroundColor: Colors.black,
       body: Center(
